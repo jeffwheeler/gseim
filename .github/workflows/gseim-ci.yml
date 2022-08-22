@@ -42,3 +42,63 @@ jobs:
         with:
           name: gseim-wheel
           path: gseim-*.whl
+  build-windows-wheel:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: msys2/setup-msys2@v2
+        with:
+          # update: true
+          release: false
+          install: >-
+            base-devel
+            mingw-w64-x86_64-gtk3
+            mingw-w64-x86_64-python3
+            mingw-w64-x86_64-python-setuptools
+            mingw-w64-x86_64-python-wheel
+            mingw-w64-x86_64-python-pip
+            mingw-w64-x86_64-python3-gobject
+            mingw-w64-x86_64-python-pyqt6
+            mingw-w64-x86_64-python-matplotlib
+            mingw-w64-x86_64-python-cairo
+      - name: Testing
+        run: |
+          ls
+          pwd
+          echo $SHELL
+          which python3
+          which pip3
+          pip3 list -v
+          # python3 -m pip install pip --upgrade
+          python3 -m site
+      - name: Install Ubuntu and Python package dependencies
+        run: |
+          curl https://github.com/bazelbuild/bazel/releases/download/6.0.0-pre.20220816.1/bazel-6.0.0-pre.20220816.1-windows-x86_64.exe -o gseim_grc/src/bazel.exe
+          # cd ./gseim_grc/src/
+          # export PATH=/usr/bin
+          # export BAZEL_SH=/usr/bin/bash.exe
+          # ./bazel.exe version
+          # ./bazel.exe info release
+      - name: Test
+        shell: powershell
+        run: |
+          cd gseim_grc/src/
+          bazel.exe version
+          bazel.exe info release
+      - name: Build and test
+        shell: powershell
+        run: |
+          $Env:PATH = "C:\msys64\mingw64\bin\;$Env:PATH"
+          Write-Output $Env:PATH
+          cd ./gseim_grc/src/
+          pip3 list
+          # bazel.exe run :foo --action_env=RULES_PYTHON_PIP_ISOLATED=0
+          bazel.exe test //... --action_env=RULES_PYTHON_PIP_ISOLATED=0
+      - name: Build wheel
+        run: |
+          cd ./gseim_grc/src/
+          ./bazel.exe build :gseim_wheel
+          ls bazel-bin/
