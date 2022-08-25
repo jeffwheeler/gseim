@@ -9,8 +9,8 @@ import pytest
 def _test_solver(fname):
     r = subprocess.run(
         [
-            str(files('gseim_cpp_lib').joinpath('gseim_solver')),
-            str(files('gseim_cpp_lib').joinpath('test_data', 'input', fname)),
+            str(files('gseim_solver')/'bin'/'gseim_solver'),
+            str(files('gseim_cpp_lib')/'test_data'/'input'/fname),
         ],
         capture_output=True,
         text=True,
@@ -25,8 +25,8 @@ def _test_solver(fname):
     out_fname = os.path.splitext(fname)[0] + '.dat'
 
     assert filecmp.cmp(
-        str(files('gseim_cpp_lib').joinpath('test_data', 'input', out_fname)),
-        str(files('gseim_cpp_lib').joinpath('test_data', 'output', out_fname)),
+        str(files('gseim_cpp_lib')/'test_data'/'input'/out_fname),
+        str(files('gseim_cpp_lib')/'test_data'/'output'/out_fname),
     )
 
 def test_ac_controllerer_1():

@@ -12,8 +12,6 @@ indent1 = '   '
 indent2 = '  '
 
 def main(out_fname, element_fnames):
-    headers_dir = files('gseim_cpp_lib')
-
     with open(out_fname, 'w') as out_f:
         out_f.write("""
 #include <iostream>
@@ -22,11 +20,11 @@ def main(out_fname, element_fnames):
 #include <vector>
 #include <map>
 
-#include "gseim_cpp_lib/global.h"
-#include "gseim_cpp_lib/xbeusr.h"
-#include "gseim_cpp_lib/xbejac.h"
-#include "gseim_cpp_lib/user_f.h"
-#include "gseim_cpp_lib/utils.h"
+#include "global.h"
+#include "xbeusr.h"
+#include "xbejac.h"
+#include "user_f.h"
+#include "utils.h"
 
 using namespace std;
             """)

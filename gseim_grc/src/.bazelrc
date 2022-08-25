@@ -1,4 +1,0 @@
-test --test_output=errors
-
-coverage --combined_report=lcov
-coverage --instrument_test_targets
