@@ -18,6 +18,7 @@ add_custom_command(
 
 set(gseim_solder_headers
     cctfile.h
+    gseim_solver.h
     global.h
     utils.h
     routines1.h
@@ -44,6 +45,7 @@ set(gseim_solder_headers
 add_library(gseim_solver_lib
     ${gseim_solder_headers}
     cctfile.cpp
+    gseim_solver.cpp
     global.cpp
     utils.cpp
     routines1.cpp
@@ -72,7 +74,7 @@ target_include_directories(gseim_solver_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(
     gseim_solver
-    gsmain.cpp
+    main.cpp
 )
 
 target_link_libraries(gseim_solver PUBLIC gseim_solver_lib)

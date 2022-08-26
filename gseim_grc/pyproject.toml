@@ -1,0 +1,35 @@
+[tool.poetry.extras]
+pyqt6 = ["pyqt6"]
+pyqt5 = ["pyqt5"]
+
+[tool.poetry.scripts]
+gseim_parser = "gseim.gseim_parser:console_entry"
+gseim_solver = "gseim_solver.bin.__main__:main"
+
+[build-system]
+requires = [
+    "setuptools",
+    "cmake-build-extension",
+    "pybind11",
+    "importlib_resources",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gseim"
+version = "0.0.1"
+dependencies = [
+    "importlib-resources >=5.8.0",
+    "matplotlib >=3.5.3",
+    "numpy >=1.23.1",
+    "platformdirs >=2.5.2",
+    "psutil >=5.9.1",
+    "pycairo >=1.21.0",
+    "PyGObject >=3.42.1",
+    "pyparsing >=3.0.9",
+    "pytest >=7.1.2",
+    "pytest-qt >=4.1.0",
+    "PyYAML >=6.0.0",
+    "appdirs >=1.4.4",
+    "pytest-xvfb >=2.0.0",
+]
