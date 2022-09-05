@@ -16,10 +16,7 @@ end_circuit
 begin_solve
    solve_type=trns
    initial_sol=initialize
-   method: algorithm_e=trz_auto
    method: algorithm_ex=trz_auto
-   method: algorithm_x_startup=explicit
-   method: algorithm_x_trns=RK4
    method: e_nr_check_delx_all=no
    method: e_nr_check_spice=yes
    method: e_nr_write_rhs2=yes
@@ -28,9 +25,7 @@ begin_solve
    method: ssw_frequency=25k
    method: t_end=40m
    method: t_start=0
-   method: tstep0_e=0.1m
    method: tstep0_ex=0.2u
-   method: tstep0_x=0.1m
    method: x_nr_check_delx_all=no
    begin_output
      filename=buck.dat limit_lines=1000000

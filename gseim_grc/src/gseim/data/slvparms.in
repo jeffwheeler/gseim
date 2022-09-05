@@ -94,17 +94,7 @@ begin_file
     default: 0
   end_parm
   begin_parm
-    keyword: tstep0_x
-    options: none
-    default: none
-  end_parm
-  begin_parm
-    keyword: tstep0_e
-    options: none
-    default: none
-  end_parm
-  begin_parm
-    keyword: tstep0_ex
+    keyword: tstep0
     options: none
     default: none
   end_parm
@@ -114,32 +104,12 @@ begin_file
     default: 1.0e-12
   end_parm
   begin_parm
-    keyword: delt_min_x
+    keyword: delt_min
     options: none
     default: none
   end_parm
   begin_parm
-    keyword: delt_min_e
-    options: none
-    default: none
-  end_parm
-  begin_parm
-    keyword: delt_min_ex
-    options: none
-    default: none
-  end_parm
-  begin_parm
-    keyword: delt_max_x
-    options: none
-    default: none
-  end_parm
-  begin_parm
-    keyword: delt_max_e
-    options: none
-    default: none
-  end_parm
-  begin_parm
-    keyword: delt_max_ex
+    keyword: delt_max
     options: none
     default: none
   end_parm

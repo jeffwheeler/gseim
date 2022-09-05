@@ -21,7 +21,7 @@ begin_solve
    method: ex_nr_check_delx_all=yes
    method: t_end=200m
    method: t_start=0
-   method: tstep0_x=0.05m
+   method: tstep0=0.05m
    method: x_nr_check_delx_all=yes
    begin_output
      filename=out1.dat limit_lines=1000000

@@ -59,17 +59,9 @@ void SolveBlocks::set_values_1(
    flag_t_start = false;
    flag_t_end = false;
 
-   flag_delt0_x = false;
-   flag_delt_min_x = false;
-   flag_delt_max_x = false;
-
-   flag_delt0_e = false;
-   flag_delt_min_e = false;
-   flag_delt_max_e = false;
-
-   flag_delt0_ex = false;
-   flag_delt_min_ex = false;
-   flag_delt_max_ex = false;
+   flag_delt0 = false;
+   flag_delt_min = false;
+   flag_delt_max = false;
 
    flag_ssw_period = false;
    flag_ssw_frequency = false;
@@ -424,40 +416,40 @@ void SolveBlocks::set_values_1(
      }
      if (cct.flag_x) {
        if (cct.flag_exc) {
-         if (!flag_delt0_ex) {
-           cout << "SolveBlocks:set_values_1: delt0_ex not specified" << endl;
+         if (!flag_delt0) {
+           cout << "SolveBlocks:set_values_1: delt0 not specified" << endl;
            cout << "  in solve block no. " << index_solve << endl;
            cout << "  Halting..." << endl; exit(1);
          }
-         if (flag_delt_min_ex) {
-           if (delt0_ex < delt_min_ex) {
-             cout << "SolveBlocks:set_values_1: delt0_ex < delt_min_ex" << endl;
+         if (flag_delt_min) {
+           if (delt0 < delt_min) {
+             cout << "SolveBlocks:set_values_1: delt0 < delt_min" << endl;
              cout << "  in solve block no. " << index_solve << endl;
              cout << "  Halting..." << endl; exit(1);
            }
          } else {
-           delt_min_ex = 0.01*delt0_ex;
+           delt_min = 0.01*delt0;
          }
-         if (!flag_delt_max_ex) {
-           delt_max_ex = 10.0*delt0_ex;
+         if (!flag_delt_max) {
+           delt_max = 10.0*delt0;
          }
        } else {
-         if (!flag_delt0_x) {
-           cout << "SolveBlocks:set_values_1: delt0_x not specified" << endl;
+         if (!flag_delt0) {
+           cout << "SolveBlocks:set_values_1: delt0 not specified" << endl;
            cout << "  in solve block no. " << index_solve << endl;
            cout << "  Halting..." << endl; exit(1);
          }
-         if (flag_delt_min_x) {
-           if (delt0_x < delt_min_x) {
-             cout << "SolveBlocks:set_values_1: delt0_x < delt_min_x" << endl;
+         if (flag_delt_min) {
+           if (delt0 < delt_min) {
+             cout << "SolveBlocks:set_values_1: delt0 < delt_min" << endl;
              cout << "  in solve block no. " << index_solve << endl;
              cout << "  Halting..." << endl; exit(1);
            }
          } else {
-           delt_min_x = 0.01*delt0_x;
+           delt_min = 0.01*delt0;
          }
-         if (!flag_delt_max_x) {
-           delt_max_x = 10.0*delt0_x;
+         if (!flag_delt_max) {
+           delt_max = 10.0*delt0;
          }
          if (flag_algo_x == -1) {
            cout << "SolveBlocks:set_values_1: algorithm_x not specified" << endl;
@@ -469,67 +461,59 @@ void SolveBlocks::set_values_1(
      }
      if (cct.flag_e) {
        if (cct.flag_exc) {
-         cout << "SolveBlocks:set_values_1: delt0_ex = " << delt0_ex << endl;
-         if (!flag_delt0_ex) {
-           cout << "SolveBlocks:set_values_1: delt0_ex not specified" << endl;
+         cout << "SolveBlocks:set_values_1: delt0 = " << delt0 << endl;
+         if (!flag_delt0) {
+           cout << "SolveBlocks:set_values_1: delt0 not specified" << endl;
            cout << "  in solve block no. " << index_solve << endl;
            cout << "  Halting..." << endl; exit(1);
          }
-         if (flag_delt_min_ex) {
-           if (delt0_ex < delt_min_ex) {
-             cout << "SolveBlocks:set_values_1: delt0_ex < delt_min_ex" << endl;
+         if (flag_delt_min) {
+           if (delt0 < delt_min) {
+             cout << "SolveBlocks:set_values_1: delt0 < delt_min" << endl;
              cout << "  in solve block no. " << index_solve << endl;
              cout << "  Halting..." << endl; exit(1);
            }
          } else {
-           delt_min_ex = 0.01*delt0_ex;
+           delt_min = 0.01*delt0;
          }
-         if (!flag_delt_max_ex) {
-           delt_max_ex = 10.0*delt0_ex;
+         if (!flag_delt_max) {
+           delt_max = 10.0*delt0;
          }
-         cout << "SolveBlocks:set_values_1: delt_min_ex = " << delt_min_ex << endl;
+         cout << "SolveBlocks:set_values_1: delt_min = " << delt_min << endl;
        } else {
-         if (!flag_delt0_e) {
-           cout << "SolveBlocks:set_values_1: delt0_e not specified" << endl;
+         if (!flag_delt0) {
+           cout << "SolveBlocks:set_values_1: delt0 not specified" << endl;
            cout << "  in solve block no. " << index_solve << endl;
            cout << "  Halting..." << endl; exit(1);
          }
-         if (flag_delt_min_e) {
-           if (delt0_e < delt_min_e) {
-             cout << "SolveBlocks:set_values_1: delt0_e < delt_min_e" << endl;
+         if (flag_delt_min) {
+           if (delt0 < delt_min) {
+             cout << "SolveBlocks:set_values_1: delt0 < delt_min" << endl;
              cout << "  in solve block no. " << index_solve << endl;
              cout << "  Halting..." << endl; exit(1);
            }
          } else {
-           delt_min_e = 0.01*delt0_e;
+           delt_min = 0.01*delt0;
          }
-         if (!flag_delt_max_e) {
-           delt_max_e = 10.0*delt0_e;
+         if (!flag_delt_max) {
+           delt_max = 10.0*delt0;
          }
-       }
-     }
-     if (cct.flag_exs_fex) {
-       if (delt0_e != delt0_x) {
-         cout << "SolveBlocks:set_values_1:" << endl;
-         cout << "  delt0_e and delt0_x must be equal in exs_fex" << endl;
-         cout << "  Check solve block no. " << index_solve << endl;
-         cout << "  Halting..." << endl; exit(1);
        }
      }
      if (cct.flag_exs_fe) {
-       if (delt_max_x > 0.501*delt0_e) {
+       if (delt_max > 0.501*delt0) {
          cout << "SolveBlocks:set_values_1:" << endl;
-         cout << "  delt_max_x > 0.5*delt0_e not allowed." << endl;
+         cout << "  delt_max > 0.5*delt0 not allowed." << endl;
          cout << "  Check solve block no. " << index_solve << endl;
          cout << "  Halting..." << endl; exit(1);
        }
      }
      if (cct.flag_exs_fx) {
-       if (delt_max_e > 0.501*delt0_x) {
+       if (delt_max > 0.501*delt0) {
          cout << "SolveBlocks:set_values_1:" << endl;
-         cout << "  delt_max_e > 0.5*delt0_x not allowed." << endl;
-         cout << "  delt_max_e = " << delt_max_e << endl;
-         cout << "  delt0_x = " << delt0_x << endl;
+         cout << "  delt_max > 0.5*delt0 not allowed." << endl;
+         cout << "  delt_max = " << delt_max << endl;
+         cout << "  delt0 = " << delt0 << endl;
          cout << "  Check solve block no. " << index_solve << endl;
          cout << "  Halting..." << endl; exit(1);
        }
@@ -586,19 +570,19 @@ void SolveBlocks::set_values_1(
      } else if (flag_ssw_period) {
        delt = ssw_period/(double)(ssw_ndiv);
        if (cct.flag_e_only) {
-         if (!flag_delt0_e) {
-           delt0_e = delt;
-           flag_delt0_e = true;
+         if (!flag_delt0) {
+           delt0 = delt;
+           flag_delt0 = true;
          }
        } else if (cct.flag_x_only) {
-         if (!flag_delt0_x) {
-           delt0_x = delt;
-           flag_delt0_x = true;
+         if (!flag_delt0) {
+           delt0 = delt;
+           flag_delt0 = true;
          }
        } else {
-         if (!flag_delt0_ex) {
-           delt0_ex = delt;
-           flag_delt0_ex = true;
+         if (!flag_delt0) {
+           delt0 = delt;
+           flag_delt0 = true;
          }
        }
      } else if (flag_ssw_frequency) {
@@ -606,19 +590,19 @@ void SolveBlocks::set_values_1(
 
        delt = ssw_period/(double)(ssw_ndiv);
        if (cct.flag_e_only) {
-         if (!flag_delt0_e) {
-           delt0_e = delt;
-           flag_delt0_e = true;
+         if (!flag_delt0) {
+           delt0 = delt;
+           flag_delt0 = true;
          }
        } else if (cct.flag_x_only) {
-         if (!flag_delt0_x) {
-           delt0_x = delt;
-           flag_delt0_x = true;
+         if (!flag_delt0) {
+           delt0 = delt;
+           flag_delt0 = true;
          }
        } else {
-         if (!flag_delt0_ex) {
-           delt0_ex = delt;
-           flag_delt0_ex = true;
+         if (!flag_delt0) {
+           delt0 = delt;
+           flag_delt0 = true;
          }
        }
      } else {
@@ -632,43 +616,43 @@ void SolveBlocks::set_values_1(
      flag_t_end = true;
 
      if (cct.flag_e_only) {
-       if (flag_delt_min_e) {
-         if (delt0_e < delt_min_e) {
-           cout << "SolveBlocks:set_values_1: delt0_e < delt_min_e" << endl;
+       if (flag_delt_min) {
+         if (delt0 < delt_min) {
+           cout << "SolveBlocks:set_values_1: delt0 < delt_min" << endl;
            cout << "  in solve block no. " << index_solve << endl;
            cout << "  Halting..." << endl; exit(1);
          }
        } else {
-         delt_min_e = 0.01*delt0_e;
+         delt_min = 0.01*delt0;
        }
-       if (!flag_delt_max_e) {
-         delt_max_e = 10.0*delt0_e;
+       if (!flag_delt_max) {
+         delt_max = 10.0*delt0;
        }
      } else if (cct.flag_x_only) {
-       if (flag_delt_min_x) {
-         if (delt0_x < delt_min_x) {
-           cout << "SolveBlocks:set_values_1: delt0_x < delt_min_x" << endl;
+       if (flag_delt_min) {
+         if (delt0 < delt_min) {
+           cout << "SolveBlocks:set_values_1: delt0 < delt_min" << endl;
            cout << "  in solve block no. " << index_solve << endl;
            cout << "  Halting..." << endl; exit(1);
          }
        } else {
-         delt_min_x = 0.01*delt0_x;
+         delt_min = 0.01*delt0;
        }
-       if (!flag_delt_max_x) {
-         delt_max_x = 10.0*delt0_x;
+       if (!flag_delt_max) {
+         delt_max = 10.0*delt0;
        }
      } else {
-       if (flag_delt_min_ex) {
-         if (delt0_ex < delt_min_ex) {
-           cout << "SolveBlocks:set_values_1: delt0_ex < delt_min_ex" << endl;
+       if (flag_delt_min) {
+         if (delt0 < delt_min) {
+           cout << "SolveBlocks:set_values_1: delt0 < delt_min" << endl;
            cout << "  in solve block no. " << index_solve << endl;
            cout << "  Halting..." << endl; exit(1);
          }
        } else {
-         delt_min_ex = 0.01*delt0_ex;
+         delt_min = 0.01*delt0;
        }
-       if (!flag_delt_max_ex) {
-         delt_max_ex = 10.0*delt0_ex;
+       if (!flag_delt_max) {
+         delt_max = 10.0*delt0;
        }
      }
 
@@ -799,12 +783,8 @@ void SolveBlocks::method_default(
    flag_ssw = false;
    solve_type = -1;
 
-   delt_min_x  = 0.0;
-   delt_max_x  = 0.0;
-   delt_min_e  = 0.0;
-   delt_max_e  = 0.0;
-   delt_min_ex = 0.0;
-   delt_max_ex = 0.0;
+   delt_min  = 0.0;
+   delt_max  = 0.0;
 
    filename = element_dir / "slvparms.in";
 
@@ -1071,9 +1051,9 @@ void SolveBlocks::trns_constants_1() {
 // -----------------------------------------------------------------------------
 void SolveBlocks::trns_constants_2_e() {
 
-   if (delt_e < delt_min_e) {
-     cout << "trns_constants_2_e: delt_e < delt_min_e?" << endl;
-     cout << "  delt_e = " << delt_e << ", delt_min_e = " << delt_min_e << endl;
+   if (delt_e < delt_min) {
+     cout << "trns_constants_2_e: delt_e < delt_min?" << endl;
+     cout << "  delt_e = " << delt_e << ", delt_min = " << delt_min << endl;
      cout << "  Halting..." << endl; exit(1);
    }
    if (e_algo_be0) {
@@ -1092,9 +1072,9 @@ void SolveBlocks::trns_constants_2_e() {
 // -----------------------------------------------------------------------------
 void SolveBlocks::trns_constants_2_x() {
 
-   if (delt_x < delt_min_x) {
-     cout << "trns_constants_2_x: delt_x < delt_min_x?" << endl;
-     cout << "  delt_x = " << delt_x << ", delt_min_x = " << delt_min_x << endl;
+   if (delt_x < delt_min) {
+     cout << "trns_constants_2_x: delt_x < delt_min?" << endl;
+     cout << "  delt_x = " << delt_x << ", delt_min = " << delt_min << endl;
      cout << "  Halting..." << endl; exit(1);
    }
    if (x_algo_be0) {
@@ -1113,9 +1093,9 @@ void SolveBlocks::trns_constants_2_x() {
 // -----------------------------------------------------------------------------
 void SolveBlocks::trns_constants_2_ex() {
 
-   if (delt_e < delt_min_e) {
-     cout << "trns_constants_2_ex: delt_e < delt_min_ex?" << endl;
-     cout << "  delt_e = " << delt_e << ", delt_min_ex = " << delt_min_ex << endl;
+   if (delt_e < delt_min) {
+     cout << "trns_constants_2_ex: delt_e < delt_min?" << endl;
+     cout << "  delt_e = " << delt_e << ", delt_min = " << delt_min << endl;
      cout << "  Halting..." << endl; exit(1);
    }
    if (ex_algo_be0) {
@@ -1245,6 +1225,8 @@ void SolveBlocks::assign_parm(
 
    ssw_nr_flag_check_rhs2 = true;
 
+   cout << "assigning: " << s2 << " = " << s3 << endl;
+
    if (s3 == "none") {
      cout << "SolveBlocks::assign_parm: " << s2
           << " not assigned. Halting..." << endl;
@@ -1339,33 +1321,15 @@ void SolveBlocks::assign_parm(
      flag_t_end = true;
    } else if (s2 == "delt_small") {
      delt_small = stod_suffix(s3);
-   } else if (s2 == "tstep0_x") {
-     delt0_x = stod_suffix(s3);
-     flag_delt0_x = true;
-   } else if (s2 == "tstep0_e") {
-     delt0_e = stod_suffix(s3);
-     flag_delt0_e = true;
-   } else if (s2 == "tstep0_ex") {
-     delt0_ex = stod_suffix(s3);
-     flag_delt0_ex = true;
-   } else if (s2 == "delt_min_x") {
-     delt_min_x = stod_suffix(s3);
-     flag_delt_min_x = true;
-   } else if (s2 == "delt_min_e") {
-     delt_min_e = stod_suffix(s3);
-     flag_delt_min_e = true;
-   } else if (s2 == "delt_min_ex") {
-     delt_min_ex = stod_suffix(s3);
-     flag_delt_min_ex = true;
-   } else if (s2 == "delt_max_e") {
-     delt_max_e = stod_suffix(s3);
-     flag_delt_max_e = true;
-   } else if (s2 == "delt_max_x") {
-     delt_max_x = stod_suffix(s3);
-     flag_delt_max_x = true;
-   } else if (s2 == "delt_max_ex") {
-     delt_max_ex = stod_suffix(s3);
-     flag_delt_max_ex = true;
+   } else if (s2 == "tstep0_x" || s2 == "tstep0_e" || s2 == "tstep0_ex") {
+     delt0 = stod_suffix(s3);
+     flag_delt0 = true;
+   } else if (s2 == "delt_min_x" || s2 == "delt_min_e" || s2 == "delt_min_ex") {
+     delt_min = stod_suffix(s3);
+     flag_delt_min = true;
+   } else if (s2 == "delt_max_x" || s2 == "delt_max_e" || s2 == "delt_max_ex") {
+     delt_max = stod_suffix(s3);
+     flag_delt_max = true;
    } else if (s2 == "t_startup") {
      time_startup = stod_suffix(s3);
    } else if (s2 == "rkf45_tolr") {

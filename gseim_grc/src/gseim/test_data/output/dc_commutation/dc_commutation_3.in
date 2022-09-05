@@ -57,7 +57,7 @@ begin_solve
    method: ssw_period=1m
    method: t_end=0
    method: t_start=0
-   method: tstep0_ex=1u
+   method: tstep0=1u
    method: x_nr_check_delx_all=no
    begin_output
      filename=out1.dat limit_lines=1000000

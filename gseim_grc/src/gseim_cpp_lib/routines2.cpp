@@ -2093,7 +2093,7 @@ void get_tnext_x(
    }
    global.flags[global.i_next_time] = false;
 
-   if (slv.delt_x != slv.delt_min_x) {
+   if (slv.delt_x != slv.delt_min) {
      for (i_xbeu=0; i_xbeu < cct.n_xbeu; i_xbeu++) {
        i_xbel = xbe_usr[i_xbeu].index_xbel;
        if (xbe_lib[i_xbel].flag_lmttstep) {
@@ -2104,10 +2104,10 @@ void get_tnext_x(
        }
      }
      delt1 = time_next_1 - slv.time_present_x;
-     slv.delt_x = max(delt1,slv.delt_min_x);
+     slv.delt_x = max(delt1,slv.delt_min);
 
-     slv.delt_x = min(slv.delt_x,slv.delt_max_x);
-     slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+     slv.delt_x = min(slv.delt_x,slv.delt_max);
+     slv.delt_x = max(slv.delt_x,slv.delt_min);
    }
 
    return;
@@ -2146,7 +2146,7 @@ void get_tnext_e(
    }
    global.flags[global.i_next_time] = false;
 
-   if (slv.delt_e != slv.delt_min_e) {
+   if (slv.delt_e != slv.delt_min) {
      for (i_ebeu=0; i_ebeu < cct.n_ebeu; i_ebeu++) {
        i_ebel = ebe_usr[i_ebeu].index_ebel;
        if (ebe_lib[i_ebel].flag_lmttstep) {
@@ -2157,10 +2157,10 @@ void get_tnext_e(
        }
      }
      delt1 = time_next_1 - slv.time_present_e;
-     slv.delt_e = max(delt1,slv.delt_min_e);
+     slv.delt_e = max(delt1,slv.delt_min);
 
-     slv.delt_e = min(slv.delt_e,slv.delt_max_e);
-     slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+     slv.delt_e = min(slv.delt_e,slv.delt_max);
+     slv.delt_e = max(slv.delt_e,slv.delt_min);
    }
 
    return;
@@ -2217,7 +2217,7 @@ void get_tnext_ex(
    }
    global.flags[global.i_next_time] = false;
 
-   if (slv.delt_e != slv.delt_min_ex) {
+   if (slv.delt_e != slv.delt_min) {
      for (i_ebeu=0; i_ebeu < cct.n_ebeu; i_ebeu++) {
        i_ebel = ebe_usr[i_ebeu].index_ebel;
        if (ebe_lib[i_ebel].flag_lmttstep) {
@@ -2237,10 +2237,10 @@ void get_tnext_ex(
        }
      }
      delt1 = time_next_1 - slv.time_present_e;
-     slv.delt_e = min(delt1,slv.delt_max_ex);
+     slv.delt_e = min(delt1,slv.delt_max);
 
-     slv.delt_e = min(slv.delt_e,slv.delt_max_ex);
-     slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+     slv.delt_e = min(slv.delt_e,slv.delt_max);
+     slv.delt_e = max(slv.delt_e,slv.delt_min);
      slv.delt_x = slv.delt_e;
    }
 

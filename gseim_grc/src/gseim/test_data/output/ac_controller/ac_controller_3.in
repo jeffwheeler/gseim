@@ -53,7 +53,7 @@ begin_solve
    method: e_nr_check_spice=yes
    method: t_end=50m
    method: t_start=0
-   method: tstep0_ex=10u
+   method: tstep0=10u
    begin_output
      filename=out1.dat limit_lines=1000000
      variables: i_Ra i_Rb i_Rc

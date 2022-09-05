@@ -142,19 +142,17 @@ public:
 
    bool flag_fixed_delt_x;
    double time_present_x,time_next_x,time_write_x;
-   double delt_min_x,delt_max_x;
-   double delt_x,delt0_x;
+   double delt_x;
 
    bool flag_fixed_delt_e;
    double time_present_e,time_next_e,time_write_e;
-   double delt_min_e,delt_max_e;
-   double delt_e,delt0_e;
+   double delt_e;
+
+   double delt0;
+   double delt_min,delt_max;
 
    double delt_small;
    double time_write;
-
-   double delt_min_ex,delt_max_ex;
-   double delt0_ex;
 
    double time_startup;
    double zero_piv,gauss_epsln;
@@ -383,9 +381,7 @@ public:
    double factor_stepinc,factor_stepdec;
 
    bool flag_t_start,flag_t_end;
-   bool flag_delt0_x,flag_delt_min_x,flag_delt_max_x;
-   bool flag_delt0_e,flag_delt_min_e,flag_delt_max_e;
-   bool flag_delt0_ex,flag_delt_min_ex,flag_delt_max_ex;
+   bool flag_delt0, flag_delt_min, flag_delt_max;
    bool flag_ssw_period,flag_ssw_frequency;
 
    int ssw_nr_itermax;

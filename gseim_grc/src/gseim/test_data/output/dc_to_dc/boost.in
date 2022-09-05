@@ -28,7 +28,7 @@ begin_solve
    method: ssw_period=40u
    method: t_end=0
    method: t_start=0
-   method: tstep0_ex=0.1u
+   method: tstep0=0.1u
    begin_output
      filename=out1.dat limit_lines=1000000
      variables: i_diode i_src i_switch v_R

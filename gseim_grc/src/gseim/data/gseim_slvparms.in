@@ -89,48 +89,18 @@ begin_file
     options: none
     default: 0
   end_parm
-  begin_parm category=time_step_x
-    keyword: tstep0_x
+  begin_parm category=time_step
+    keyword: tstep0
     options: none
     default: none
   end_parm
-  begin_parm category=time_step_x
-    keyword: delt_min_x
+  begin_parm category=time_step
+    keyword: delt_min
     options: none
     default: none
   end_parm
-  begin_parm category=time_step_x
-    keyword: delt_max_x
-    options: none
-    default: none
-  end_parm
-  begin_parm category=time_step_e
-    keyword: tstep0_e
-    options: none
-    default: none
-  end_parm
-  begin_parm category=time_step_e
-    keyword: delt_min_e
-    options: none
-    default: none
-  end_parm
-  begin_parm category=time_step_e
-    keyword: delt_max_e
-    options: none
-    default: none
-  end_parm
-  begin_parm category=time_step_ex
-    keyword: tstep0_ex
-    options: none
-    default: none
-  end_parm
-  begin_parm category=time_step_ex
-    keyword: delt_min_ex
-    options: none
-    default: none
-  end_parm
-  begin_parm category=time_step_ex
-    keyword: delt_max_ex
+  begin_parm category=time_step
+    keyword: delt_max
     options: none
     default: none
   end_parm

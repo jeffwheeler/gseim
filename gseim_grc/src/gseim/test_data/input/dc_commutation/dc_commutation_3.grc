@@ -693,12 +693,8 @@ solve_blocks:
     bs23_fctr_max: '1.1'
     bs23_fctr_min: '0.8'
     bs23_tolr: '1.0e-8'
-    delt_max_e: none
-    delt_max_ex: none
-    delt_max_x: none
-    delt_min_e: none
-    delt_min_ex: none
-    delt_min_x: none
+    delt_max: none
+    delt_min: none
     e_nr_check_delx_all: 'no'
     e_nr_check_spice: 'no'
     e_nr_dmp: 'no'
@@ -750,9 +746,7 @@ solve_blocks:
     t_start: '0'
     t_startup: '0.0'
     trbdf2_tolr: '1.0e-5'
-    tstep0_e: none
-    tstep0_ex: none
-    tstep0_x: none
+    tstep0: none
     write_iter_n_e: '1000'
     write_iter_n_x: '1000'
     write_time_x: 'no'
@@ -779,12 +773,8 @@ solve_blocks:
     bs23_fctr_max: '1.1'
     bs23_fctr_min: '0.8'
     bs23_tolr: '1.0e-8'
-    delt_max_e: none
-    delt_max_ex: none
-    delt_max_x: none
-    delt_min_e: none
-    delt_min_ex: none
-    delt_min_x: none
+    delt_max: none
+    delt_min: none
     e_nr_check_delx_all: 'no'
     e_nr_check_spice: 'yes'
     e_nr_dmp: 'no'
@@ -836,9 +826,7 @@ solve_blocks:
     t_start: '0'
     t_startup: '0.0'
     trbdf2_tolr: '1.0e-5'
-    tstep0_e: none
-    tstep0_ex: 1u
-    tstep0_x: none
+    tstep0: 1u
     write_iter_n_e: '1000'
     write_iter_n_x: '1000'
     write_time_x: 'no'

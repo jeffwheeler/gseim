@@ -40,7 +40,7 @@ begin_solve
    method: ssw_frequency=60
    method: t_end=100m
    method: t_start=0
-   method: tstep0_ex=10u
+   method: tstep0=10u
    method: x_nr_check_delx_all=no
    begin_output
      filename=out1.dat limit_lines=1000000

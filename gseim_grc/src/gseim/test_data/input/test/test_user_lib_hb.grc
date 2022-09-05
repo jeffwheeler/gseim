@@ -198,12 +198,8 @@ solve_blocks:
     bs23_fctr_max: '1.1'
     bs23_fctr_min: '0.8'
     bs23_tolr: '1.0e-8'
-    delt_max_e: none
-    delt_max_ex: none
-    delt_max_x: none
-    delt_min_e: none
-    delt_min_ex: none
-    delt_min_x: none
+    delt_min: none
+    delt_max: none
     e_nr_check_delx_all: 'no'
     e_nr_check_spice: 'no'
     e_nr_dmp: 'no'
@@ -255,9 +251,7 @@ solve_blocks:
     t_start: '0'
     t_startup: '0.0'
     trbdf2_tolr: '1.0e-5'
-    tstep0_e: 1e-3
-    tstep0_ex: none
-    tstep0_x: none
+    tstep0: 1e-3
     write_iter_n_e: '1000'
     write_iter_n_x: '1000'
     write_time_e: 'no'

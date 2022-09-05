@@ -18,7 +18,7 @@ begin_solve
    method: ex_nr_check_delx_all=no
    method: t_end=1
    method: t_start=0
-   method: tstep0_e=1e-3
+   method: tstep0=1e-3
    method: x_nr_check_delx_all=no
    begin_output
      filename=rc_out.dat limit_lines=1000000

@@ -247,8 +247,8 @@ void solve_trns_x_feuler(
 
 //   find the new time step if necessary
 
-     slv.delt_x = slv.delt0_x;
-     slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+     slv.delt_x = slv.delt0;
+     slv.delt_x = max(slv.delt_x,slv.delt_min);
 
      if (cct.flag_limit_tstep_x) {
        get_tnext_x(xbe_lib,xbe_usr,xbe_jac,slv,cct,global);
@@ -256,7 +256,7 @@ void solve_trns_x_feuler(
      time_next_1 = slv.time_present_x + slv.delt_x;
      if (time_next_1 >= global.time_end) {
        slv.delt_x = global.time_end - slv.time_present_x + slv.delt_small;
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
      }
      if (cct.flag_save_history_x) {
        save_history_x(xbe_lib,xbe_usr,xbe_jac,cct,global);
@@ -334,8 +334,8 @@ void solve_trns_x_rk4(
 
 //   find the new time step if necessary
 
-     slv.delt_x = slv.delt0_x;
-     slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+     slv.delt_x = slv.delt0;
+     slv.delt_x = max(slv.delt_x,slv.delt_min);
 
      if (cct.flag_limit_tstep_x) {
        get_tnext_x(xbe_lib,xbe_usr,xbe_jac,slv,cct,global);
@@ -343,7 +343,7 @@ void solve_trns_x_rk4(
      time_next_1 = slv.time_present_x + slv.delt_x;
      if (time_next_1 >= global.time_end) {
        slv.delt_x = global.time_end - slv.time_present_x + slv.delt_small;
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
      }
 
      if (cct.flag_save_history_x) {
@@ -421,14 +421,14 @@ void solve_trns_x_rkf45(
        slv.rkf45_n_accept++;
      } else {
        slv.rkf45_n_reject++;
-       if (slv.delt_x == slv.delt_min_x) {
+       if (slv.delt_x == slv.delt_min) {
          cout << "solve_trns_x_rkf45:" << endl;
          cout << "  tolerance not met even with" << endl;
          cout << "  the smallest time step." << endl;
          cout << "  rkf45_norm2=" << slv.rkf45_norm2
            << ",  rkf45_tolr=" << slv.rkf45_tolr << endl;
          cout << "  delt_x=" << slv.delt_x
-           << ",  delt_min_x=" << slv.delt_min_x << endl;
+           << ",  delt_min=" << slv.delt_min << endl;
          cout << "  Halting..." << endl;
          exit(1);
        }
@@ -473,12 +473,12 @@ void solve_trns_x_rkf45(
 
 //   limit the time step:
 
-     slv.delt_x = min(slv.delt_x,slv.delt_max_x);
-     slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+     slv.delt_x = min(slv.delt_x,slv.delt_max);
+     slv.delt_x = max(slv.delt_x,slv.delt_min);
 
 //   check if the time step should be limited by elements:
 
-     if (slv.delt_x > slv.delt_min_x) {
+     if (slv.delt_x > slv.delt_min) {
        if (cct.flag_limit_tstep_x) {
          get_tnext_x(xbe_lib,xbe_usr,xbe_jac,slv,cct,global);
        }
@@ -486,7 +486,7 @@ void solve_trns_x_rkf45(
      time_next_1 = slv.time_present_x + slv.delt_x;
      if (time_next_1 >= global.time_end) {
        slv.delt_x = global.time_end - slv.time_present_x + slv.delt_small;
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
      }
      if (cct.flag_save_history_x) {
        save_history_x(xbe_lib,xbe_usr,xbe_jac,cct,global);
@@ -568,14 +568,14 @@ void solve_trns_x_bs23(
        slv.bs23_n_accept++;
      } else {
        slv.bs23_n_reject++;
-       if (slv.delt_x == slv.delt_min_x) {
+       if (slv.delt_x == slv.delt_min) {
          cout << "solve_trns_x_bs23:" << endl;
          cout << "  tolerance not met even with" << endl;
          cout << "  the smallest time step." << endl;
          cout << "  bs23_norm2=" << slv.bs23_norm2
            << ",  bs23_tolr=" << slv.bs23_tolr << endl;
          cout << "  delt_x=" << slv.delt_x
-           << ",  delt_min_x=" << slv.delt_min_x << endl;
+           << ",  delt_min=" << slv.delt_min << endl;
          cout << "  Halting..." << endl;
          exit(1);
        }
@@ -621,12 +621,12 @@ void solve_trns_x_bs23(
 
 //   limit the time step:
 
-     slv.delt_x = min(slv.delt_x,slv.delt_max_x);
-     slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+     slv.delt_x = min(slv.delt_x,slv.delt_max);
+     slv.delt_x = max(slv.delt_x,slv.delt_min);
 
 //   check if the time step should be limited by elements:
 
-     if (slv.delt_x > slv.delt_min_x) {
+     if (slv.delt_x > slv.delt_min) {
        if (cct.flag_limit_tstep_x) {
          get_tnext_x(xbe_lib,xbe_usr,xbe_jac,slv,cct,global);
        }
@@ -634,7 +634,7 @@ void solve_trns_x_bs23(
      time_next_1 = slv.time_present_x + slv.delt_x;
      if (time_next_1 >= global.time_end) {
        slv.delt_x = global.time_end - slv.time_present_x + slv.delt_small;
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
      }
      if (cct.flag_save_history_x) {
        save_history_x(xbe_lib,xbe_usr,xbe_jac,cct,global);
@@ -717,8 +717,8 @@ void solve_trns_x_meuler(
 
 //   find the new time step if necessary
 
-     slv.delt_x = slv.delt0_x;
-     slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+     slv.delt_x = slv.delt0;
+     slv.delt_x = max(slv.delt_x,slv.delt_min);
 
      if (cct.flag_limit_tstep_x) {
        get_tnext_x(xbe_lib,xbe_usr,xbe_jac,slv,cct,global);
@@ -726,7 +726,7 @@ void solve_trns_x_meuler(
      time_next_1 = slv.time_present_x + slv.delt_x;
      if (time_next_1 >= global.time_end) {
        slv.delt_x = global.time_end - slv.time_present_x + slv.delt_small;
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
      }
      if (cct.flag_save_history_x) {
        save_history_x(xbe_lib,xbe_usr,xbe_jac,cct,global);
@@ -803,8 +803,8 @@ void solve_trns_x_heun(
 
 //   find the new time step if necessary
 
-     slv.delt_x = slv.delt0_x;
-     slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+     slv.delt_x = slv.delt0;
+     slv.delt_x = max(slv.delt_x,slv.delt_min);
 
      if (cct.flag_limit_tstep_x) {
        get_tnext_x(xbe_lib,xbe_usr,xbe_jac,slv,cct,global);
@@ -812,7 +812,7 @@ void solve_trns_x_heun(
      time_next_1 = slv.time_present_x + slv.delt_x;
      if (time_next_1 >= global.time_end) {
        slv.delt_x = global.time_end - slv.time_present_x + slv.delt_small;
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
      }
      if (cct.flag_save_history_x) {
        save_history_x(xbe_lib,xbe_usr,xbe_jac,cct,global);
@@ -1957,7 +1957,7 @@ void solve_trns_x_common(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_x = slv.delt0_x;
+   slv.delt_x = slv.delt0;
 
    slv.write_iter_n1_x = 0;
    slv.iter_trns_x = -1; 
@@ -3486,7 +3486,7 @@ void solve_trns_e_be(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_e = slv.delt0_e;
+   slv.delt_e = slv.delt0;
 
    if (!slv.flag_const_tstep_e) {
      if (cct.flag_limit_tstep_e) {
@@ -3544,8 +3544,8 @@ void solve_trns_e_be(
 
 //   find the new time step if necessary
 
-     slv.delt_e = slv.delt0_e;
-     slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+     slv.delt_e = slv.delt0;
+     slv.delt_e = max(slv.delt_e,slv.delt_min);
 
      if (!slv.flag_const_tstep_e) {
        if (cct.flag_limit_tstep_e) {
@@ -3555,7 +3555,7 @@ void solve_trns_e_be(
      time_next_1 = slv.time_present_e + slv.delt_e;
      if (time_next_1 >= global.time_end) {
        slv.delt_e = global.time_end - slv.time_present_e + slv.delt_small;
-       slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
      }
      if (cct.flag_save_history_e) {
        save_history_e(ebe_lib,ebe_usr,ebe_jac,cct,global);
@@ -3601,7 +3601,7 @@ void solve_trns_e_trz(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_e = slv.delt0_e;
+   slv.delt_e = slv.delt0;
 
    if (!slv.flag_const_tstep_e) {
      if (cct.flag_limit_tstep_e) {
@@ -3671,8 +3671,8 @@ void solve_trns_e_trz(
 
 //   find the new time step if necessary
 
-     slv.delt_e = slv.delt0_e;
-     slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+     slv.delt_e = slv.delt0;
+     slv.delt_e = max(slv.delt_e,slv.delt_min);
 
      if (!slv.flag_const_tstep_e) {
        if (cct.flag_limit_tstep_e) {
@@ -3682,7 +3682,7 @@ void solve_trns_e_trz(
      time_next_1 = slv.time_present_e + slv.delt_e;
      if (time_next_1 >= global.time_end) {
        slv.delt_e = global.time_end - slv.time_present_e + slv.delt_small;
-       slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
      }
      if (cct.flag_save_history_e) {
        save_history_e(ebe_lib,ebe_usr,ebe_jac,cct,global);
@@ -3730,7 +3730,7 @@ void solve_trns_e_be_auto(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_e = slv.delt0_e;
+   slv.delt_e = slv.delt0;
 
    if (cct.flag_limit_tstep_e) {
      e_assign_nextbreak_1(ebe_usr,cct,global);
@@ -3769,7 +3769,7 @@ void solve_trns_e_be_auto(
          smat,cct,slv,global);
 
        if (!slv.flag_nr_converged) {
-         if (slv.delt_e == slv.delt_min_e) {
+         if (slv.delt_e == slv.delt_min) {
            cout << "solve_trns_e_be_auto: no convergence even with" << endl;
            cout << "  the smallest time step." << endl;
            slv.write_flags_failed();
@@ -3788,7 +3788,7 @@ void solve_trns_e_be_auto(
              exit(1);
            }
            slv.delt_e = slv.factor_stepdec*slv.delt_e;
-           slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+           slv.delt_e = max(slv.delt_e,slv.delt_min);
 
            copy_array_1<double>(smat.n_solvec_e,smat.svec_e,smat.svec_old_1_e);
            ebeu_copy_stv_1(global.I_COPY_0_TO_1,ebe_lib,ebe_usr,cct,global);
@@ -3796,9 +3796,9 @@ void solve_trns_e_be_auto(
            flag_repeat_step = true;
          }
        } else {
-         if (slv.delt_e != slv.delt_max_e) {
+         if (slv.delt_e != slv.delt_max) {
            slv.delt_e = slv.factor_stepinc*slv.delt_e;
-           slv.delt_e = min(slv.delt_e,slv.delt_max_e);
+           slv.delt_e = min(slv.delt_e,slv.delt_max);
          }
          flag_repeat_step = false;
        }
@@ -3813,7 +3813,7 @@ void solve_trns_e_be_auto(
        copy_array_1<double>(smat.n_solvec_e,smat.svec_e,smat.svec_old_1_e);
        ebeu_copy_stv_1(global.I_COPY_0_TO_1,ebe_lib,ebe_usr,cct,global);
 
-       slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
 
        if (cct.flag_limit_tstep_e) {
          get_tnext_e(ebe_lib,ebe_usr,ebe_jac,slv,cct,global);
@@ -3821,7 +3821,7 @@ void solve_trns_e_be_auto(
        time_next_1 = slv.time_present_e + slv.delt_e;
        if (time_next_1 >= global.time_end) {
          slv.delt_e = global.time_end - slv.time_present_e + slv.delt_small;
-         slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+         slv.delt_e = max(slv.delt_e,slv.delt_min);
        }
        if (cct.flag_save_history_e) {
          save_history_e(ebe_lib,ebe_usr,ebe_jac,cct,global);
@@ -3869,7 +3869,7 @@ void solve_trns_e_trz_auto(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_e = slv.delt0_e;
+   slv.delt_e = slv.delt0;
 
    if (cct.flag_limit_tstep_e) {
      e_assign_nextbreak_1(ebe_usr,cct,global);
@@ -3917,7 +3917,7 @@ void solve_trns_e_trz_auto(
          smat,cct,slv,global);
 
        if (!slv.flag_nr_converged) {
-         if (slv.delt_e == slv.delt_min_e) {
+         if (slv.delt_e == slv.delt_min) {
            cout << "solve_trns_e_trzauto: no convergence even with" << endl;
            cout << "  the smallest time step." << endl;
            slv.write_flags_failed();
@@ -3936,7 +3936,7 @@ void solve_trns_e_trz_auto(
              exit(1);
            }
            slv.delt_e = slv.factor_stepdec*slv.delt_e;
-           slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+           slv.delt_e = max(slv.delt_e,slv.delt_min);
 
            copy_array_1<double>(smat.n_solvec_e,smat.svec_e,smat.svec_old_1_e);
            ebeu_copy_stv_1(global.I_COPY_0_TO_1,ebe_lib,ebe_usr,cct,global);
@@ -3944,9 +3944,9 @@ void solve_trns_e_trz_auto(
            flag_repeat_step = true;
          }
        } else {
-         if (slv.delt_e != slv.delt_max_e) {
+         if (slv.delt_e != slv.delt_max) {
            slv.delt_e = slv.factor_stepinc*slv.delt_e;
-           slv.delt_e = min(slv.delt_e,slv.delt_max_e);
+           slv.delt_e = min(slv.delt_e,slv.delt_max);
          }
          flag_repeat_step = false;
        }
@@ -3961,7 +3961,7 @@ void solve_trns_e_trz_auto(
        copy_array_1<double>(smat.n_solvec_e,smat.svec_e,smat.svec_old_1_e);
        ebeu_copy_stv_1(global.I_COPY_0_TO_1,ebe_lib,ebe_usr,cct,global);
 
-       slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
 
        if (cct.flag_limit_tstep_e) {
          get_tnext_e(ebe_lib,ebe_usr,ebe_jac,slv,cct,global);
@@ -3969,7 +3969,7 @@ void solve_trns_e_trz_auto(
        time_next_1 = slv.time_present_e + slv.delt_e;
        if (time_next_1 >= global.time_end) {
          slv.delt_e = global.time_end - slv.time_present_e + slv.delt_small;
-         slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+         slv.delt_e = max(slv.delt_e,slv.delt_min);
        }
        if (cct.flag_save_history_e) {
          save_history_e(ebe_lib,ebe_usr,ebe_jac,cct,global);
@@ -4019,7 +4019,7 @@ void solve_trns_e_trbdf2(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_e = slv.delt0_e;
+   slv.delt_e = slv.delt0;
 
    if (cct.flag_limit_tstep_e) {
      e_assign_nextbreak_1(ebe_usr,cct,global);
@@ -4085,7 +4085,7 @@ void solve_trns_e_trbdf2(
          smat,cct,slv,global);
 
        if (!slv.flag_nr_converged) {
-         if (slv.delt_e == slv.delt_min_e) {
+         if (slv.delt_e == slv.delt_min) {
            cout << "solve_trns_e_trbdf2: no convergence even with" << endl;
            cout << "  the smallest time step." << endl;
            slv.write_flags_failed();
@@ -4097,7 +4097,7 @@ void solve_trns_e_trbdf2(
            exit(1);
          }
          slv.delt_e = slv.factor_stepdec*delt_tmp;
-         slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+         slv.delt_e = max(slv.delt_e,slv.delt_min);
 
          copy_array_1<double>(smat.n_solvec_e,smat.svec_old_1_e,smat.svec_e);
          ebeu_copy_stv_1(global.I_COPY_1_TO_0,ebe_lib,ebe_usr,cct,global);
@@ -4137,7 +4137,7 @@ void solve_trns_e_trbdf2(
            smat,cct,slv,global);
 
          if (!slv.flag_nr_converged) {
-           if (slv.delt_e == slv.delt_min_e) {
+           if (slv.delt_e == slv.delt_min) {
              cout << "solve_trns_e_trbdf2: no convergence even with" << endl;
              cout << "  the smallest time step." << endl;
              slv.write_flags_failed();
@@ -4149,7 +4149,7 @@ void solve_trns_e_trbdf2(
              exit(1);
            }
            slv.delt_e = slv.factor_stepdec*delt_tmp;
-           slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+           slv.delt_e = max(slv.delt_e,slv.delt_min);
 
            copy_array_1<double>(smat.n_solvec_e,smat.svec_old_2_e,smat.svec_old_1_e);
            copy_array_1<double>(smat.n_solvec_e,smat.svec_old_2_e,smat.svec_e);
@@ -4166,8 +4166,8 @@ void solve_trns_e_trbdf2(
        trzbdf2_1_e(ebe_lib,ebe_usr,smat,cct,slv);
 
        slv.delt_e = slv.delt_new_e;
-       slv.delt_e = max(slv.delt_e,slv.delt_min_e);
-       slv.delt_e = min(slv.delt_e,slv.delt_max_e);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
+       slv.delt_e = min(slv.delt_e,slv.delt_max);
 
        if (!slv.flag_accept_sol) {
          n_reject++;
@@ -4194,7 +4194,7 @@ void solve_trns_e_trbdf2(
        copy_array_1<double>(smat.n_solvec_e,smat.svec_e,smat.svec_old_1_e);
        ebeu_copy_stv_1(global.I_COPY_0_TO_1,ebe_lib,ebe_usr,cct,global);
 
-       slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
 
        if (cct.flag_limit_tstep_e) {
          get_tnext_e(ebe_lib,ebe_usr,ebe_jac,slv,cct,global);
@@ -4202,7 +4202,7 @@ void solve_trns_e_trbdf2(
        time_next_1 = slv.time_present_e + slv.delt_e;
        if (time_next_1 >= global.time_end) {
          slv.delt_e = global.time_end - slv.time_present_e + slv.delt_small;
-         slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+         slv.delt_e = max(slv.delt_e,slv.delt_min);
        }
        if (cct.flag_save_history_e) {
          save_history_e(ebe_lib,ebe_usr,ebe_jac,cct,global);
@@ -4405,7 +4405,7 @@ void solve_trns_x_be(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_x = slv.delt0_x;
+   slv.delt_x = slv.delt0;
 
    if (!slv.flag_const_tstep_x) {
      if (cct.flag_limit_tstep_x) {
@@ -4468,8 +4468,8 @@ void solve_trns_x_be(
      write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
        cct,slv,cct_file,global);
 
-     slv.delt_x = slv.delt0_x;
-     slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+     slv.delt_x = slv.delt0;
+     slv.delt_x = max(slv.delt_x,slv.delt_min);
 
      if (!slv.flag_const_tstep_x) {
        if (cct.flag_limit_tstep_x) {
@@ -4479,7 +4479,7 @@ void solve_trns_x_be(
      time_next_1 = slv.time_present_x + slv.delt_x;
      if (time_next_1 >= global.time_end) {
        slv.delt_x = global.time_end - slv.time_present_x + slv.delt_small;
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
      }
      if (cct.flag_reset_x) {
        xbe_reset_1(true,xbe_lib,xbe_usr,xbe_jac,cct,smat,global);
@@ -4529,7 +4529,7 @@ void solve_trns_x_trz(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_x = slv.delt0_x;
+   slv.delt_x = slv.delt0;
 
    if (!slv.flag_const_tstep_x) {
      if (cct.flag_limit_tstep_x) {
@@ -4604,8 +4604,8 @@ void solve_trns_x_trz(
 
 //   find the new time step if necessary
 
-     slv.delt_x = slv.delt0_x;
-     slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+     slv.delt_x = slv.delt0;
+     slv.delt_x = max(slv.delt_x,slv.delt_min);
 
      if (!slv.flag_const_tstep_x) {
        if (cct.flag_limit_tstep_x) {
@@ -4615,7 +4615,7 @@ void solve_trns_x_trz(
      time_next_1 = slv.time_present_x + slv.delt_x;
      if (time_next_1 >= global.time_end) {
        slv.delt_x = global.time_end - slv.time_present_x + slv.delt_small;
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
      }
      if (cct.flag_reset_x) {
        xbe_reset_1(true,xbe_lib,xbe_usr,xbe_jac,cct,smat,global);
@@ -4667,7 +4667,7 @@ void solve_trns_x_be_auto(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_x = slv.delt0_x;
+   slv.delt_x = slv.delt0;
 
    if (cct.flag_limit_tstep_x) {
      x_assign_nextbreak_1(xbe_usr,cct,global);
@@ -4713,7 +4713,7 @@ void solve_trns_x_be_auto(
          smat,cct,slv,global);
 
        if (!slv.flag_nr_converged) {
-         if (slv.delt_x == slv.delt_min_x) {
+         if (slv.delt_x == slv.delt_min) {
            cout << "solve_trns_x_be_auto: no convergence even with" << endl;
            cout << "  the smallest time step." << endl;
            slv.write_flags_failed();
@@ -4732,15 +4732,15 @@ void solve_trns_x_be_auto(
              exit(1);
            }
            slv.delt_x = slv.factor_stepdec*slv.delt_x;
-           slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+           slv.delt_x = max(slv.delt_x,slv.delt_min);
 
            copy_array_1<double>(smat.n_solvec_x,smat.svec_x,smat.svec_old_1_x);
            flag_repeat_step = true;
          }
        } else {
-         if (slv.delt_x != slv.delt_max_x) {
+         if (slv.delt_x != slv.delt_max) {
            slv.delt_x = slv.factor_stepinc*slv.delt_x;
-           slv.delt_x = min(slv.delt_x,slv.delt_max_x);
+           slv.delt_x = min(slv.delt_x,slv.delt_max);
          }
          flag_repeat_step = false;
        }
@@ -4752,7 +4752,7 @@ void solve_trns_x_be_auto(
        write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
          cct,slv,cct_file,global);
 
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
 
        if (cct.flag_limit_tstep_x) {
          get_tnext_x(xbe_lib,xbe_usr,xbe_jac,slv,cct,global);
@@ -4760,7 +4760,7 @@ void solve_trns_x_be_auto(
        time_next_1 = slv.time_present_x + slv.delt_x;
        if (time_next_1 >= global.time_end) {
          slv.delt_x = global.time_end - slv.time_present_x + slv.delt_small;
-         slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+         slv.delt_x = max(slv.delt_x,slv.delt_min);
        }
        if (cct.flag_reset_x) {
          xbe_reset_1(true,xbe_lib,xbe_usr,xbe_jac,cct,smat,global);
@@ -4813,7 +4813,7 @@ void solve_trns_x_trz_auto(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_x = slv.delt0_x;
+   slv.delt_x = slv.delt0;
 
    if (cct.flag_limit_tstep_x) {
      x_assign_nextbreak_1(xbe_usr,cct,global);
@@ -4871,7 +4871,7 @@ void solve_trns_x_trz_auto(
          smat,cct,slv,global);
 
        if (!slv.flag_nr_converged) {
-         if (slv.delt_x == slv.delt_min_x) {
+         if (slv.delt_x == slv.delt_min) {
            cout << "solve_trns_x_trzauto: no convergence even with" << endl;
            cout << "  the smallest time step." << endl;
            slv.write_flags_failed();
@@ -4890,16 +4890,16 @@ void solve_trns_x_trz_auto(
              exit(1);
            }
            slv.delt_x = slv.factor_stepdec*slv.delt_x;
-           slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+           slv.delt_x = max(slv.delt_x,slv.delt_min);
 
            copy_array_1<double>(smat.n_solvec_x,smat.svec_x,smat.svec_old_1_x);
 
            flag_repeat_step = true;
          }
        } else {
-         if (slv.delt_x != slv.delt_max_x) {
+         if (slv.delt_x != slv.delt_max) {
            slv.delt_x = slv.factor_stepinc*slv.delt_x;
-           slv.delt_x = min(slv.delt_x,slv.delt_max_x);
+           slv.delt_x = min(slv.delt_x,slv.delt_max);
          }
          flag_repeat_step = false;
        }
@@ -4911,7 +4911,7 @@ void solve_trns_x_trz_auto(
        write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
          cct,slv,cct_file,global);
 
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
 
        if (cct.flag_limit_tstep_x) {
          get_tnext_x(xbe_lib,xbe_usr,xbe_jac,slv,cct,global);
@@ -4919,7 +4919,7 @@ void solve_trns_x_trz_auto(
        time_next_1 = slv.time_present_x + slv.delt_x;
        if (time_next_1 >= global.time_end) {
          slv.delt_x = global.time_end - slv.time_present_x + slv.delt_small;
-         slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+         slv.delt_x = max(slv.delt_x,slv.delt_min);
        }
        if (cct.flag_reset_x) {
          xbe_reset_1(true,xbe_lib,xbe_usr,xbe_jac,cct,smat,global);
@@ -4973,7 +4973,7 @@ void solve_trns_x_trbdf2(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_x = slv.delt0_x;
+   slv.delt_x = slv.delt0;
 
    if (cct.flag_limit_tstep_x) {
      x_assign_nextbreak_1(xbe_usr,cct,global);
@@ -5049,7 +5049,7 @@ void solve_trns_x_trbdf2(
          smat,cct,slv,global);
 
        if (!slv.flag_nr_converged) {
-         if (slv.delt_x == slv.delt_min_x) {
+         if (slv.delt_x == slv.delt_min) {
            cout << "solve_trns_x_trbdf2: no convergence even with" << endl;
            cout << "  the smallest time step." << endl;
            slv.write_flags_failed();
@@ -5063,7 +5063,7 @@ void solve_trns_x_trbdf2(
 
          slv.delt_x = slv.factor_stepdec*delt_tmp;
 
-         slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+         slv.delt_x = max(slv.delt_x,slv.delt_min);
 
          copy_array_1<double>(smat.n_solvec_x,smat.svec_old_1_x,smat.svec_x);
          flag_repeat_step = true;
@@ -5103,7 +5103,7 @@ void solve_trns_x_trbdf2(
            smat,cct,slv,global);
 
          if (!slv.flag_nr_converged) {
-           if (slv.delt_x == slv.delt_min_x) {
+           if (slv.delt_x == slv.delt_min) {
              cout << "solve_trns_x_trbdf2: no convergence even with" << endl;
              cout << "  the smallest time step." << endl;
              slv.write_flags_failed();
@@ -5115,7 +5115,7 @@ void solve_trns_x_trbdf2(
              exit(1);
            }
            slv.delt_x = slv.factor_stepdec*delt_tmp;
-           slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+           slv.delt_x = max(slv.delt_x,slv.delt_min);
 
            copy_array_1<double>(smat.n_solvec_x,smat.svec_old_2_x,smat.svec_old_1_x);
            copy_array_1<double>(smat.n_solvec_x,smat.svec_old_2_x,smat.svec_x);
@@ -5131,8 +5131,8 @@ void solve_trns_x_trbdf2(
 
        slv.delt_x = slv.delt_new_x;
 
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
-       slv.delt_x = min(slv.delt_x,slv.delt_max_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
+       slv.delt_x = min(slv.delt_x,slv.delt_max);
 
        if (!slv.flag_accept_sol) {
          n_reject++;
@@ -5155,7 +5155,7 @@ void solve_trns_x_trbdf2(
 
 //     copy_array_1<double>(smat.n_solvec_x,smat.svec_x,smat.svec_old_1_x);
 
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
 
        if (cct.flag_limit_tstep_x) {
 
@@ -5165,7 +5165,7 @@ void solve_trns_x_trbdf2(
        time_next_1 = slv.time_present_x + slv.delt_x;
        if (time_next_1 >= global.time_end) {
          slv.delt_x = global.time_end - slv.time_present_x + slv.delt_small;
-         slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+         slv.delt_x = max(slv.delt_x,slv.delt_min);
        }
        if (cct.flag_reset_x) {
          xbe_reset_1(true,xbe_lib,xbe_usr,xbe_jac,cct,smat,global);
@@ -5465,8 +5465,8 @@ void solve_trns_exc_be(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_e = slv.delt0_ex;
-   slv.delt_x = slv.delt0_ex;
+   slv.delt_e = slv.delt0;
+   slv.delt_x = slv.delt0;
 
    if (!slv.flag_const_tstep_ex) {
      if (cct.flag_limit_tstep) {
@@ -5509,7 +5509,7 @@ void solve_trns_exc_be(
      if (cct.flag_time_parms) {
        xbe_time_parms(xbe_lib,xbe_usr,xbe_jac,cct,global);
      }
-     if (slv.delt_e < slv.delt_min_e) {
+     if (slv.delt_e < slv.delt_min) {
        cout << "solve_trns_exc_be: check slv.delt_e. Halting..." << endl;
        exit(1);
      }
@@ -5548,8 +5548,8 @@ void solve_trns_exc_be(
 
 //   find the new time step if necessary
 
-     slv.delt_e = slv.delt0_ex;
-     slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+     slv.delt_e = slv.delt0;
+     slv.delt_e = max(slv.delt_e,slv.delt_min);
      slv.delt_x = slv.delt_e;
 
      if (!slv.flag_const_tstep_ex) {
@@ -5561,7 +5561,7 @@ void solve_trns_exc_be(
      time_next_1 = slv.time_present_e + slv.delt_e;
      if (time_next_1 >= global.time_end) {
        slv.delt_e = global.time_end - slv.time_present_e + slv.delt_small;
-       slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
        slv.delt_x = slv.delt_e;
      }
 
@@ -5622,8 +5622,8 @@ void solve_trns_exc_trz(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_e = slv.delt0_ex;
-   slv.delt_x = slv.delt0_ex;
+   slv.delt_e = slv.delt0;
+   slv.delt_x = slv.delt0;
 
    if (!slv.flag_const_tstep_ex) {
      if (cct.flag_limit_tstep) {
@@ -5716,8 +5716,8 @@ void solve_trns_exc_trz(
      write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
        cct,slv,cct_file,global);
 
-     slv.delt_e = slv.delt0_ex;
-     slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+     slv.delt_e = slv.delt0;
+     slv.delt_e = max(slv.delt_e,slv.delt_min);
      slv.delt_x = slv.delt_e;
 
      if (!slv.flag_const_tstep_ex) {
@@ -5729,7 +5729,7 @@ void solve_trns_exc_trz(
      time_next_1 = slv.time_present_e + slv.delt_e;
      if (time_next_1 >= global.time_end) {
        slv.delt_e = global.time_end - slv.time_present_e + slv.delt_small;
-       slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
        slv.delt_x = slv.delt_e;
      }
      if (cct.flag_reset_x) {
@@ -5789,8 +5789,8 @@ void solve_trns_exc_be_auto(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_e = slv.delt0_e;
-   slv.delt_x = slv.delt0_x;
+   slv.delt_e = slv.delt0;
+   slv.delt_x = slv.delt0;
 
    if (cct.flag_limit_tstep) {
      e_assign_nextbreak_1(ebe_usr,cct,global);
@@ -5849,7 +5849,7 @@ void solve_trns_exc_be_auto(
          smat,cct,slv,global);
 
        if (!slv.flag_nr_converged) {
-         if (slv.delt_e == slv.delt_min_ex) {
+         if (slv.delt_e == slv.delt_min) {
            cout << "solve_trns_exc_be_auto: no convergence even with" << endl;
            cout << "  the smallest time step." << endl;
            slv.write_flags_failed();
@@ -5868,7 +5868,7 @@ void solve_trns_exc_be_auto(
              exit(1);
            }
            slv.delt_e = slv.factor_stepdec*slv.delt_e;
-           slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+           slv.delt_e = max(slv.delt_e,slv.delt_min);
            slv.delt_x = slv.delt_e;
 
            copy_array_1<double>(smat.n_solvec_ex,smat.svec_ex,smat.svec_old_1_ex);
@@ -5877,9 +5877,9 @@ void solve_trns_exc_be_auto(
            flag_repeat_step = true;
          }
        } else {
-         if (slv.delt_e != slv.delt_max_ex) {
+         if (slv.delt_e != slv.delt_max) {
            slv.delt_e = slv.factor_stepinc*slv.delt_e;
-           slv.delt_e = min(slv.delt_e,slv.delt_max_ex);
+           slv.delt_e = min(slv.delt_e,slv.delt_max);
            slv.delt_x = slv.delt_e;
          }
          flag_repeat_step = false;
@@ -5893,7 +5893,7 @@ void solve_trns_exc_be_auto(
        write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
          cct,slv,cct_file,global);
 
-       slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
        slv.delt_x = slv.delt_e;
 
        if (cct.flag_limit_tstep) {
@@ -5903,7 +5903,7 @@ void solve_trns_exc_be_auto(
        time_next_1 = slv.time_present_e + slv.delt_e;
        if (time_next_1 >= global.time_end) {
          slv.delt_e = global.time_end - slv.time_present_e + slv.delt_small;
-         slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+         slv.delt_e = max(slv.delt_e,slv.delt_min);
          slv.delt_x = slv.delt_e;
        }
        if (cct.flag_reset_x) {
@@ -5964,8 +5964,8 @@ void solve_trns_exc_trz_auto(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_e = slv.delt0_ex;
-   slv.delt_x = slv.delt0_ex;
+   slv.delt_e = slv.delt0;
+   slv.delt_x = slv.delt0;
 
    if (cct.flag_limit_tstep) {
      e_assign_nextbreak_1(ebe_usr,cct,global);
@@ -6041,7 +6041,7 @@ void solve_trns_exc_trz_auto(
          smat,cct,slv,global);
 
        if (!slv.flag_nr_converged) {
-         if (slv.delt_e == slv.delt_min_ex) {
+         if (slv.delt_e == slv.delt_min) {
            cout << "solve_trns_exc_trzauto: no convergence even with" << endl;
            cout << "  the smallest time step." << endl;
            slv.write_flags_failed();
@@ -6060,7 +6060,7 @@ void solve_trns_exc_trz_auto(
              exit(1);
            }
            slv.delt_e = slv.factor_stepdec*slv.delt_e;
-           slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+           slv.delt_e = max(slv.delt_e,slv.delt_min);
            slv.delt_x = slv.delt_e;
 
            copy_array_1<double>(smat.n_solvec_ex,smat.svec_ex,smat.svec_old_1_ex);
@@ -6069,9 +6069,9 @@ void solve_trns_exc_trz_auto(
            flag_repeat_step = true;
          }
        } else {
-         if (slv.delt_e != slv.delt_max_ex) {
+         if (slv.delt_e != slv.delt_max) {
            slv.delt_e = slv.factor_stepinc*slv.delt_e;
-           slv.delt_e = min(slv.delt_e,slv.delt_max_ex);
+           slv.delt_e = min(slv.delt_e,slv.delt_max);
            slv.delt_x = slv.delt_e;
          }
          flag_repeat_step = false;
@@ -6085,7 +6085,7 @@ void solve_trns_exc_trz_auto(
        write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
          cct,slv,cct_file,global);
 
-       slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
        slv.delt_x = slv.delt_e;
 
        if (cct.flag_limit_tstep) {
@@ -6095,7 +6095,7 @@ void solve_trns_exc_trz_auto(
        time_next_1 = slv.time_present_e + slv.delt_e;
        if (time_next_1 >= global.time_end) {
          slv.delt_e = global.time_end - slv.time_present_e + slv.delt_small;
-         slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+         slv.delt_e = max(slv.delt_e,slv.delt_min);
          slv.delt_x = slv.delt_e;
        }
        if (cct.flag_reset_x) {
@@ -6158,8 +6158,8 @@ void solve_trns_exc_trbdf2(
    write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
      cct,slv,cct_file,global);
 
-   slv.delt_e = slv.delt0_ex;
-   slv.delt_x = slv.delt0_ex;
+   slv.delt_e = slv.delt0;
+   slv.delt_x = slv.delt0;
 
    if (cct.flag_limit_tstep) {
      e_assign_nextbreak_1(ebe_usr,cct,global);
@@ -6249,7 +6249,7 @@ void solve_trns_exc_trbdf2(
          smat,cct,slv,global);
 
        if (!slv.flag_nr_converged) {
-         if (slv.delt_e == slv.delt_min_ex) {
+         if (slv.delt_e == slv.delt_min) {
            cout << "solve_trns_exc_trbdf2: no convergence even with" << endl;
            cout << "  the smallest time step." << endl;
            slv.write_flags_failed();
@@ -6261,7 +6261,7 @@ void solve_trns_exc_trbdf2(
            exit(1);
          }
          slv.delt_e = slv.factor_stepdec*delt_tmp;
-         slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+         slv.delt_e = max(slv.delt_e,slv.delt_min);
          slv.delt_x = slv.delt_e;
 
          copy_array_1<double>(smat.n_solvec_ex,smat.svec_old_1_ex,smat.svec_ex);
@@ -6312,7 +6312,7 @@ void solve_trns_exc_trbdf2(
            smat,cct,slv,global);
 
          if (!slv.flag_nr_converged) {
-           if (slv.delt_e == slv.delt_min_ex) {
+           if (slv.delt_e == slv.delt_min) {
              cout << "solve_trns_exc_trbdf2: no convergence even with" << endl;
              cout << "  the smallest time step." << endl;
              slv.write_flags_failed();
@@ -6324,7 +6324,7 @@ void solve_trns_exc_trbdf2(
              exit(1);
            }
            slv.delt_e = slv.factor_stepdec*delt_tmp;
-           slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+           slv.delt_e = max(slv.delt_e,slv.delt_min);
            slv.delt_x = slv.delt_e;
 
            copy_array_1<double>
@@ -6344,8 +6344,8 @@ void solve_trns_exc_trbdf2(
        trzbdf2_1_ex(ebe_lib,ebe_usr,xbe_usr,smat,cct,slv);
 
        slv.delt_e = slv.delt_new_e;
-       slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
-       slv.delt_e = min(slv.delt_e,slv.delt_max_ex);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
+       slv.delt_e = min(slv.delt_e,slv.delt_max);
        slv.delt_x = slv.delt_e;
 
        if (!slv.flag_accept_sol) {
@@ -6374,7 +6374,7 @@ void solve_trns_exc_trbdf2(
        write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
          cct,slv,cct_file,global);
 
-       slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
        slv.delt_x = slv.delt_e;
 
        if (cct.flag_limit_tstep) {
@@ -6384,7 +6384,7 @@ void solve_trns_exc_trbdf2(
        time_next_1 = slv.time_present_e + slv.delt_e;
        if (time_next_1 >= global.time_end) {
          slv.delt_e = global.time_end - slv.time_present_e + slv.delt_small;
-         slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+         slv.delt_e = max(slv.delt_e,slv.delt_min);
          slv.delt_x = slv.delt_e;
        }
        if (cct.flag_reset_x) {
@@ -9486,7 +9486,7 @@ void solve_ssw_1_e(
        cct,slv,cct_file,global);
    }
 
-   slv.delt_e = slv.delt0_e;
+   slv.delt_e = slv.delt0;
 
    if (!slv.flag_const_tstep_e) {
      if (cct.flag_limit_tstep_e) {
@@ -9522,7 +9522,7 @@ void solve_ssw_1_e(
 
      slv.time_next_e  = slv.time_present_e + slv.delt_e;
 
-     if (slv.time_next_e >= (global.time_end - slv.delt_min_e)) {
+     if (slv.time_next_e >= (global.time_end - slv.delt_min)) {
        slv.time_next_e = global.time_end;
      }
      global.time_given_e = slv.time_next_e;
@@ -9549,7 +9549,7 @@ void solve_ssw_1_e(
          smat,cct,slv,cct_file,global);
        if (!slv.flag_nr_converged) {
          if (slv.e_algo_auto) {
-           if (slv.delt_e == slv.delt_min_e) {
+           if (slv.delt_e == slv.delt_min) {
              cout << "solve_ssw_1_e: no convergence even with" << endl;
              cout << "  the smallest time step." << endl;
              slv.write_flags_failed();
@@ -9567,7 +9567,7 @@ void solve_ssw_1_e(
                exit(1);
              }
              slv.delt_e = slv.factor_stepdec*slv.delt_e;
-             slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+             slv.delt_e = max(slv.delt_e,slv.delt_min);
 
              copy_array_1<double>(smat.n_solvec_e,smat.svec_old_1_e,smat.svec_e);
              ebeu_copy_stv_1(global.I_COPY_1_TO_0,ebe_lib,ebe_usr,cct,global);
@@ -9587,9 +9587,9 @@ void solve_ssw_1_e(
          }
        } else {
          if (slv.e_algo_auto) {
-           if (slv.delt_e != slv.delt_max_e) {
+           if (slv.delt_e != slv.delt_max) {
              slv.delt_e = slv.factor_stepinc*slv.delt_e;
-             slv.delt_e = min(slv.delt_e,slv.delt_max_e);
+             slv.delt_e = min(slv.delt_e,slv.delt_max);
            }
          }
        }
@@ -9617,9 +9617,9 @@ void solve_ssw_1_e(
      ebeu_copy_stv_1(global.I_COPY_0_TO_1,ebe_lib,ebe_usr,cct,global);
 
      if (slv.e_algo_trz || slv.e_algo_be || slv.e_algo_trz_const || slv.e_algo_be_const) {
-       slv.delt_e = slv.delt0_e;
+       slv.delt_e = slv.delt0;
      }
-     slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+     slv.delt_e = max(slv.delt_e,slv.delt_min);
 
      if (!slv.flag_const_tstep_e) {
        if (cct.flag_limit_tstep_e) {
@@ -9629,7 +9629,7 @@ void solve_ssw_1_e(
      time_next_1 = slv.time_present_e + slv.delt_e;
      if (time_next_1 >= global.time_end) {
        slv.delt_e = global.time_end - slv.time_present_e + time_epsilon;
-       slv.delt_e = max(slv.delt_e,slv.delt_min_e);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
      }
      if (cct.flag_save_history_e) {
        save_history_e(ebe_lib,ebe_usr,ebe_jac,cct,global);
@@ -9703,8 +9703,8 @@ void solve_ssw_1_ex(
      write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
        cct,slv,cct_file,global);
    }
-   slv.delt_e = slv.delt0_ex;
-   slv.delt_x = slv.delt0_ex;
+   slv.delt_e = slv.delt0;
+   slv.delt_x = slv.delt0;
 
    if (!slv.flag_const_tstep_ex) {
      if (cct.flag_limit_tstep) {
@@ -9755,7 +9755,7 @@ void solve_ssw_1_ex(
      slv.time_next_e = slv.time_present_e + slv.delt_e;
      slv.time_next_x = slv.time_present_x + slv.delt_x;
 
-     if (slv.time_next_e >= (global.time_end - slv.delt_min_e)) {
+     if (slv.time_next_e >= (global.time_end - slv.delt_min)) {
        slv.time_next_e = global.time_end;
        slv.time_next_x = global.time_end;
      }
@@ -9785,7 +9785,7 @@ void solve_ssw_1_ex(
          smat,cct,slv,cct_file,global);
        if (!slv.flag_nr_converged) {
          if (slv.ex_algo_auto) {
-           if (slv.delt_e == slv.delt_min_e) {
+           if (slv.delt_e == slv.delt_min) {
              cout << "solve_ssw_1_ex: no convergence even with" << endl;
              cout << "  the smallest time step." << endl;
              slv.write_flags_failed();
@@ -9803,7 +9803,7 @@ void solve_ssw_1_ex(
                exit(1);
              }
              slv.delt_e = slv.factor_stepdec*slv.delt_e;
-             slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+             slv.delt_e = max(slv.delt_e,slv.delt_min);
              slv.delt_x = slv.delt_e;
 
              copy_array_1<double>(smat.n_solvec_ex,smat.svec_old_1_ex,smat.svec_ex);
@@ -9824,9 +9824,9 @@ void solve_ssw_1_ex(
          }
        } else {
          if (slv.ex_algo_auto) {
-           if (slv.delt_e != slv.delt_max_ex) {
+           if (slv.delt_e != slv.delt_max) {
              slv.delt_e = slv.factor_stepinc*slv.delt_e;
-             slv.delt_e = min(slv.delt_e,slv.delt_max_ex);
+             slv.delt_e = min(slv.delt_e,slv.delt_max);
              slv.delt_x = slv.delt_e;
            }
          }
@@ -9856,10 +9856,10 @@ void solve_ssw_1_ex(
      ebeu_copy_stv_1(global.I_COPY_0_TO_1,ebe_lib,ebe_usr,cct,global);
 
      if (slv.ex_algo_trz || slv.ex_algo_be) {
-       slv.delt_e = slv.delt0_ex;
-       slv.delt_x = slv.delt0_ex;
+       slv.delt_e = slv.delt0;
+       slv.delt_x = slv.delt0;
      }
-     slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+     slv.delt_e = max(slv.delt_e,slv.delt_min);
      slv.delt_x = slv.delt_e;
 
      if (!slv.flag_const_tstep_ex) {
@@ -9871,7 +9871,7 @@ void solve_ssw_1_ex(
      time_next_1 = slv.time_present_e + slv.delt_e;
      if (time_next_1 >= global.time_end) {
        slv.delt_e = global.time_end - slv.time_present_e + time_epsilon;
-       slv.delt_e = max(slv.delt_e,slv.delt_min_ex);
+       slv.delt_e = max(slv.delt_e,slv.delt_min);
        slv.delt_x = slv.delt_e;
      }
      if (cct.flag_save_history_e) {
@@ -9947,7 +9947,7 @@ void solve_ssw_1_x(
      write_trns(xbe_lib,xbe_usr,xbe_jac,ebe_lib,ebe_usr,ebe_jac,
        cct,slv,cct_file,global);
    }
-   slv.delt_x = slv.delt0_x;
+   slv.delt_x = slv.delt0;
 
    if (!slv.flag_const_tstep_x) {
      if (cct.flag_limit_tstep) {
@@ -9987,7 +9987,7 @@ void solve_ssw_1_x(
 
      slv.time_next_x = slv.time_present_x + slv.delt_x;
 
-     if (slv.time_next_x >= (global.time_end - slv.delt_min_x)) {
+     if (slv.time_next_x >= (global.time_end - slv.delt_min)) {
        slv.time_next_x = global.time_end;
      }
      global.time_given_x = slv.time_next_x;
@@ -10014,7 +10014,7 @@ void solve_ssw_1_x(
          smat,cct,slv,cct_file,global);
        if (!slv.flag_nr_converged) {
          if (slv.x_algo_auto) {
-           if (slv.delt_x == slv.delt_min_x) {
+           if (slv.delt_x == slv.delt_min) {
              cout << "solve_ssw_1_x: no convergence even with" << endl;
              cout << "  the smallest time step." << endl;
              slv.write_flags_failed();
@@ -10032,7 +10032,7 @@ void solve_ssw_1_x(
                exit(1);
              }
              slv.delt_x = slv.factor_stepdec*slv.delt_x;
-             slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+             slv.delt_x = max(slv.delt_x,slv.delt_min);
 
              copy_array_1<double>(smat.n_solvec_x,smat.svec_old_1_x,smat.svec_x);
              goto jump_ssw1;
@@ -10050,9 +10050,9 @@ void solve_ssw_1_x(
          }
        } else {
          if (slv.x_algo_auto) {
-           if (slv.delt_x != slv.delt_max_x) {
+           if (slv.delt_x != slv.delt_max) {
              slv.delt_x = slv.factor_stepinc*slv.delt_x;
-             slv.delt_x = min(slv.delt_x,slv.delt_max_x);
+             slv.delt_x = min(slv.delt_x,slv.delt_max);
            }
          }
        }
@@ -10079,9 +10079,9 @@ void solve_ssw_1_x(
      copy_array_1<double>(smat.n_solvec_x,smat.svec_x,smat.svec_old_1_x);
 
      if (slv.x_algo_trz || slv.x_algo_be) {
-       slv.delt_x = slv.delt0_x;
+       slv.delt_x = slv.delt0;
      }
-     slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+     slv.delt_x = max(slv.delt_x,slv.delt_min);
 
      if (!slv.flag_const_tstep_x) {
        if (cct.flag_limit_tstep_x) {
@@ -10091,7 +10091,7 @@ void solve_ssw_1_x(
      time_next_1 = slv.time_present_x + slv.delt_x;
      if (time_next_1 >= global.time_end) {
        slv.delt_x = global.time_end - slv.time_present_x + time_epsilon;
-       slv.delt_x = max(slv.delt_x,slv.delt_min_x);
+       slv.delt_x = max(slv.delt_x,slv.delt_min);
      }
      if (cct.flag_save_history_x) {
        save_history_x(xbe_lib,xbe_usr,xbe_jac,cct,global);
